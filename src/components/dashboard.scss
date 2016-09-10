@@ -1,0 +1,31 @@
+#dashboard{
+    h4{
+        &:nth-child(1){
+            margin-top: 0;
+        }
+    }
+    i{
+        &.material-icons{
+            vertical-align: middle;
+        }
+    }
+    table{
+        tbody{
+            td{
+                padding: 0 10px;
+                &:nth-child(1){
+                    text-align: right;
+                }
+            }
+        }
+    }
+    p{
+        font-size: 0.6em;
+    }
+
+    div{
+        &:last-child{
+            text-align: center;
+        }
+    }
+}

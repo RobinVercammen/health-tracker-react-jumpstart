@@ -1,0 +1,17 @@
+- toevoegen material ui
+- toevoegen roboto font in head
+- Eigen component gemaakt waarin drawer zit
+- Reacties van drawer gefixt
+- Menu toegevoegd
+- Menu opent drawer
+- React router toegevoegd
+- History aangepast
+- Routes aangemaakt
+- this.children in app component
+- mini componenten aangemaakt (zeker van Component laten overerven)
+- Hashbang navigatie om server instellingen zeker niet te moeten aanpassen
+- random query string uit hash navigatie gehaald
+- click op menuitem sluit menu => NOG NIET IN ORDE
+- menu icoontjes toevoegen door font toe te voegen aan head van index.html en fonticon te gebruiken
+- styling dashboard => css loader toevoegen npm install --save-dev node-sass sass-loader style-loader css-loader
+- dashboard hardcoded toegevoegd
