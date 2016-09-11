@@ -1,10 +1,15 @@
 import React from 'react';
 import RaisedButton from 'material-ui/RaisedButton';
 import './dashboard.scss';
+import store from '../store';
 
 const buttonStyle = {marginLeft: 'auto', marginRight:'auto'};
 
 export default class Dashboard extends React.Component {
+    componentWillMount(){
+        store.dispatch({type:'UPDATETITLE', title: 'Your dashboard'});
+    }
+
     render() {
         return (
             <div id="dashboard">

@@ -6,6 +6,7 @@ import AppBar from 'material-ui/AppBar';
 import FontIcon from 'material-ui/FontIcon';
 import { Link } from 'react-router';
 import './app.scss';
+import store from './store';
 
 export default class App extends React.Component {
     render() {
@@ -32,13 +33,17 @@ class DrawerSimpleExample extends React.Component {
         this.state = { open: false };
         this.handleToggle = () => this.setState({ open: true });
         this.closeDrawer = () => this.setState({ open: false });
+
+        store.subscribe(()=>{
+            this.setState({title: store.getState()});
+        });
     }
 
 
     render() {
         return (
             <div>
-                <AppBar onLeftIconButtonTouchTap={this.handleToggle}/>
+                <AppBar title={this.state.title} onLeftIconButtonTouchTap={this.handleToggle}/>
 
                 <Drawer swipeAreaWidth={0} open={this.state.open} docked={false} className="app-drawer" onRequestChange={this.closeDrawer}>
                     <MenuItem leftIcon={<FontIcon

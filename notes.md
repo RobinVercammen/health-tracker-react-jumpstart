@@ -15,3 +15,6 @@
 - menu icoontjes toevoegen door font toe te voegen aan head van index.html en fonticon te gebruiken
 - styling dashboard => css loader toevoegen npm install --save-dev node-sass sass-loader style-loader css-loader
 - dashboard hardcoded toegevoegd
+- redux installeren voor state
+- js config file
+- store creeren voor title
