@@ -8,9 +8,25 @@ const buttonStyle = {marginLeft: 'auto', marginRight:'auto'};
 export default class Dashboard extends React.Component {
     componentWillMount(){
         store.dispatch({type:'UPDATETITLE', title: 'Your dashboard'});
+        store.subscribe(()=>{
+            const dashboard = store.getState().dashboard;
+            this.setState(dashboard);
+        });
+        store.dispatch({type:'LOADDASHBOARD'});
     }
 
     render() {
+        let rows = [];
+        for(let i = 0; i < this.state.habits.length; i++){
+            let habit = this.state.habits[i];
+            rows.push(
+                <div key={habit.title}>
+                    <h5>{habit.title}</h5>
+                    <p>Current streak: {habit.streak} days    -   Success:  {habit.streak}/{habit.goal} days</p>
+                </div>
+            );
+        }
+        
         return (
             <div id="dashboard">
                 <h4><i className="material-icons">straighten</i> Weight</h4>
@@ -18,15 +34,15 @@ export default class Dashboard extends React.Component {
                     <tbody>
                         <tr>
                             <td>Goal:</td>
-                            <td>57 Kg</td>
+                            <td>{this.state.weight.goal} Kg</td>
                         </tr>
                         <tr>
                             <td>Current:</td>
-                            <td>58, 3 Kg</td>
+                            <td>{this.state.weight.current} Kg</td>
                         </tr>
                         <tr>
                             <td>Best:</td>
-                            <td>57, 9 Kg</td>
+                            <td>{this.state.weight.best} Kg</td>
                         </tr>
                     </tbody>
                 </table>
@@ -35,25 +51,20 @@ export default class Dashboard extends React.Component {
                 <tbody>
                     <tr>
                         <td>Goal:</td>
-                        <td>1750 calories</td>
+                        <td>{this.state.calories.goal} calories</td>
                     </tr>
                     <tr>
                         <td>Last:</td>
-                        <td>1820 calories</td>
+                        <td>{this.state.calories.last} calories</td>
                     </tr>
                     <tr>
                         <td>Average:</td>
-                        <td>1788 calories</td>
+                        <td>{this.state.calories.avg} calories</td>
                     </tr>
                 </tbody>
             </table>
             <h4><i className="material-icons">navigation</i> Habits</h4>
-            <h5>Drink at least one liter of water</h5>
-                <p>Current streak: 23 days    -   Success:  23/60 days</p>
-            <h5>Eat two pieces of fruit</h5>
-                <p>Current streak: 23 days    -   Success:  23/60 days</p>
-            <h5>Don't drink any kind of soda</h5>
-                <p>Current streak: 23 days    -   Success:  23/60 days</p>
+                {rows}
             <div>
                 <RaisedButton label="Daily update" primary={true}/>
             </div>

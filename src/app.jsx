@@ -35,7 +35,7 @@ class DrawerSimpleExample extends React.Component {
         this.closeDrawer = () => this.setState({ open: false });
 
         store.subscribe(()=>{
-            this.setState({title: store.getState()});
+            this.setState({title: store.getState().applicationTitle});
         });
     }
 

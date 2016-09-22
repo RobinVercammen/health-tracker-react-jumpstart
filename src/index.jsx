@@ -2,7 +2,7 @@ import React from 'react';
 import { render } from 'react-dom';
 import injectTapEventPlugin from 'react-tap-event-plugin';
 import App from './app';
-import { Router, Route, Link, useRouterHistory } from 'react-router';
+import { Router, Route, IndexRedirect, Link, useRouterHistory } from 'react-router';
 import createHashHistory from 'history/lib/createHashHistory';
 const history = useRouterHistory(createHashHistory)({ queryKey: false })
 
@@ -19,6 +19,7 @@ injectTapEventPlugin();
 render(
     <Router history={history}>
         <Route path="/" component={App}>
+            <IndexRedirect to="dashboard"/>
             <Route path="dashboard" component={Dashboard}/>
             <Route path="calories" component={Calories}/>
             <Route path="habits" component={Habits}/>
