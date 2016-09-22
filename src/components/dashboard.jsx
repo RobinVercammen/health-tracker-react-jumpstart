@@ -9,7 +9,7 @@ const dashboardUrl = 'http://localhost:8081/dashboard';
 export default class Dashboard extends React.Component {
     componentWillMount(){
         store.dispatch({type:'UPDATETITLE', title: 'Your dashboard'});
-        store.subscribe(()=>{
+        this.unsubscribe = store.subscribe(()=>{
             const dashboard = store.getState().dashboard;
             this.setState(dashboard);
         });
@@ -26,6 +26,10 @@ export default class Dashboard extends React.Component {
             store.dispatch({type:'LOADDASHBOARD', content: json});    
         });
         
+    }
+
+    componentWillUnmount(){
+        this.unsubscribe();
     }
 
     render() {

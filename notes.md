@@ -26,4 +26,6 @@
 - npm install --save es6-promise
 - npm install --save whatwg-fetch
 - remove checkboxes
-- 
+- weight controller voor overview
+- moment voor date parsing npm install --save moment, functie aanmaken
+- unmounten mogelijk

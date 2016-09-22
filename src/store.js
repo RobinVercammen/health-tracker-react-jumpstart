@@ -10,6 +10,9 @@ const applicationStore = (state, action) => {
         case 'LOADDASHBOARD': {
             return Object.assign({}, state, { dashboard: action.content });
         }
+        case 'LOADWEIGHT': {
+            return Object.assign({}, state, { weight: action.content });
+        }
         default:
             return state;
     }
