@@ -29,10 +29,11 @@ export default class Weight extends React.Component {
     render() {
         let rows = [];
         for (let index = 0; index < this.state.tableData.length; index++) {
+            const entry = this.state.tableData[index];
             rows.push(
-                <TableRow>
-                    <TableRowColumn>{this.state.tableData[index].date}</TableRowColumn>
-                    <TableRowColumn>{this.state.tableData[index].weight}</TableRowColumn>
+                <TableRow key={index}>
+                    <TableRowColumn>{entry.date}</TableRowColumn>
+                    <TableRowColumn>{entry.weight}</TableRowColumn>
                     <TableRowColumn></TableRowColumn>
                 </TableRow>
             );
@@ -40,14 +41,14 @@ export default class Weight extends React.Component {
 
         return (
             <Table>
-                <TableHeader>
+                <TableHeader displaySelectAll={false} adjustForCheckbox={false}>
                     <TableRow>
                         <TableHeaderColumn>Date</TableHeaderColumn>
                         <TableHeaderColumn>Weight</TableHeaderColumn>
                         <TableHeaderColumn></TableHeaderColumn>
                     </TableRow>
                 </TableHeader>
-                <TableBody>
+                <TableBody displayRowCheckbox={false}>
                     {rows}
                 </TableBody>
             </Table>

@@ -18,3 +18,12 @@
 - redux installeren voor state
 - js config file
 - store creeren voor title
+- store updaten
+- extraheren van harde waarden uit dashboard
+- xhr vs fetch api
+- fetch polyfill
+- npm install imports-loader exports-loader --save voor fetch polyfill
+- npm install --save es6-promise
+- npm install --save whatwg-fetch
+- remove checkboxes
+- 

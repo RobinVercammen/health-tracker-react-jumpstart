@@ -4,6 +4,7 @@ import './dashboard.scss';
 import store from '../store';
 
 const buttonStyle = {marginLeft: 'auto', marginRight:'auto'};
+const dashboardUrl = 'http://localhost:8081/dashboard';
 
 export default class Dashboard extends React.Component {
     componentWillMount(){
@@ -12,7 +13,19 @@ export default class Dashboard extends React.Component {
             const dashboard = store.getState().dashboard;
             this.setState(dashboard);
         });
-        store.dispatch({type:'LOADDASHBOARD'});
+
+        this.setState({
+            habits:[],
+            weight:{},
+            calories: {}
+        });
+
+        fetch(dashboardUrl).then(reponse=> {
+            return reponse.json();
+        }).then(json=>{
+            store.dispatch({type:'LOADDASHBOARD', content: json});    
+        });
+        
     }
 
     render() {
