@@ -12,7 +12,7 @@ const formatDate = (date)=>{
     return moment(date).format('dddd DD MMMM');
 }
 
-const weightUrl = 'http://localhost:8081/weight';
+const weightUrl = 'http://localhost:8081/1/weight';
 
 export default class Weight extends React.Component {
     componentWillMount() {

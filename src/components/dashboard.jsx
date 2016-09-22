@@ -4,7 +4,7 @@ import './dashboard.scss';
 import store from '../store';
 
 const buttonStyle = {marginLeft: 'auto', marginRight:'auto'};
-const dashboardUrl = 'http://localhost:8081/dashboard';
+const dashboardUrl = 'http://localhost:8081/1/dashboard';
 
 export default class Dashboard extends React.Component {
     componentWillMount(){
