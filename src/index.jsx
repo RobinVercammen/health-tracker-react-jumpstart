@@ -11,6 +11,7 @@ import Dashboard from './components/dashboard';
 import Habits from './components/habits';
 import Settings from './components/settings';
 import Weight from './components/weight';
+import WeightEdit from './components/weight/weight.edit';
 
 injectTapEventPlugin();
 
@@ -25,6 +26,7 @@ render(
             <Route path="habits" component={Habits}/>
             <Route path="settings" component={Settings}/>
             <Route path="weight" component={Weight}/>
+            <Route path="weight/:id" component={WeightEdit}/>
         </Route>
     </Router>,
     document.getElementById('app-root'));

@@ -13,6 +13,12 @@ const applicationStore = (state, action) => {
         case 'LOADWEIGHT': {
             return Object.assign({}, state, { weight: action.content });
         }
+        case 'EDITDATE': {
+            return Object.assign({}, state, { EditDate: action.content });
+        }
+        case 'EDITWEIGHT': {
+            return Object.assign({}, state, { EditWeight: action.content });
+        }
         default:
             return state;
     }
