@@ -4,8 +4,10 @@ import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import RaisedButton from 'material-ui/RaisedButton';
 import AppBar from 'material-ui/AppBar';
 import FontIcon from 'material-ui/FontIcon';
+import IconButton from 'material-ui/IconButton';
 import { Link } from 'react-router';
 import './app.scss';
+import { history } from './index';
 import store from './store';
 
 export default class App extends React.Component {
@@ -13,7 +15,7 @@ export default class App extends React.Component {
         return (
             <MuiThemeProvider>
                 <div>
-                    <DrawerSimpleExample/>
+                    <DrawerSimpleExample />
                     <div id="router-route">
                         {this.props.children}
                     </div>
@@ -26,6 +28,37 @@ export default class App extends React.Component {
 import Drawer from 'material-ui/Drawer';
 import MenuItem from 'material-ui/MenuItem';
 
+class Actions extends React.Component {
+    constructor() {
+        super();
+        this.save = this.save.bind(this);
+    }
+    componentWillMount() {
+        store.subscribe(() => {
+            this.setState({ save: store.getState().save });
+        });
+    }
+    save() {
+        this.state.save().then(c => {
+            history.goBack();
+        });
+    }
+    render() {
+        if (this.state && this.state.save) {
+            return (
+                <div>
+                    <IconButton onClick={this.save}>
+                        <FontIcon
+                            className="material-icons appbar-icon"
+                            >check</FontIcon>
+                    </IconButton>
+                </div>
+            );
+        }
+        return <div></div>;
+    }
+}
+
 class DrawerSimpleExample extends React.Component {
 
     constructor(props) {
@@ -34,8 +67,8 @@ class DrawerSimpleExample extends React.Component {
         this.handleToggle = () => this.setState({ open: true });
         this.closeDrawer = () => this.setState({ open: false });
 
-        store.subscribe(()=>{
-            this.setState({title: store.getState().applicationTitle});
+        store.subscribe(() => {
+            this.setState({ title: store.getState().applicationTitle });
         });
     }
 
@@ -43,7 +76,7 @@ class DrawerSimpleExample extends React.Component {
     render() {
         return (
             <div>
-                <AppBar title={this.state.title} onLeftIconButtonTouchTap={this.handleToggle}/>
+                <AppBar title={this.state.title} onLeftIconButtonTouchTap={this.handleToggle} iconElementRight={<Actions />} />
 
                 <Drawer swipeAreaWidth={0} open={this.state.open} docked={false} className="app-drawer" onRequestChange={this.closeDrawer}>
                     <MenuItem leftIcon={<FontIcon

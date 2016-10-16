@@ -15,3 +15,8 @@ body{
 #router-route{
     padding:15px;
 }
+
+.appbar-icon{
+    // hack find out why style on property cannot be overridden·
+    color: white !important;
+}

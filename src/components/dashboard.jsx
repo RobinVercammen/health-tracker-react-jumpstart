@@ -2,17 +2,7 @@ import React from 'react';
 import RaisedButton from 'material-ui/RaisedButton';
 import './dashboard.scss';
 import store from '../store';
-
-const buttonStyle = { marginLeft: 'auto', marginRight: 'auto' };
-const dashboardUrl = 'http://localhost:10010/dashboard';
-const headers = new Headers({
-    'x-user-id': 1
-});
-
-const options = {
-    method: 'GET',
-    headers
-}
+import dashboardApi from '../api/dashboard';
 
 export default class Dashboard extends React.Component {
     componentWillMount() {
@@ -28,9 +18,7 @@ export default class Dashboard extends React.Component {
             calories: {}
         });
 
-        fetch(dashboardUrl, options).then(reponse => {
-            return reponse.json();
-        }).then(json => {
+        dashboardApi.getAll().then(json => {
             store.dispatch({ type: 'LOADDASHBOARD', content: json });
         });
 
@@ -47,7 +35,7 @@ export default class Dashboard extends React.Component {
             rows.push(
                 <div key={habit.name}>
                     <h5>{habit.name}</h5>
-                    <p>Current streak: {habit.streak} days    -   Success: {habit.streak}/60 days</p>
+                    <p>Current streak: {habit.streak}days    -   Success: {habit.streak}/60 days</p>
                 </div>
             );
         }
@@ -59,15 +47,15 @@ export default class Dashboard extends React.Component {
                     <tbody>
                         <tr>
                             <td>Goal: </td>
-                            <td>{this.state.weight.goal} Kg</td>
+                            <td>{this.state.weight.goal}Kg</td>
                         </tr>
                         <tr>
                             <td>Current: </td>
-                            <td>{this.state.weight.current} Kg</td>
+                            <td>{this.state.weight.current}Kg</td>
                         </tr>
                         <tr>
                             <td>Best: </td>
-                            <td>{this.state.weight.best} Kg</td>
+                            <td>{this.state.weight.best}Kg</td>
                         </tr>
                     </tbody>
                 </table>
@@ -76,22 +64,22 @@ export default class Dashboard extends React.Component {
                     <tbody>
                         <tr>
                             <td>Goal: </td>
-                            <td>{this.state.calories.goal} calories</td>
+                            <td>{this.state.calories.goal}calories</td>
                         </tr>
                         <tr>
                             <td>Last: </td>
-                            <td>{this.state.calories.last} calories</td>
+                            <td>{this.state.calories.last}calories</td>
                         </tr>
                         <tr>
                             <td>Average: </td>
-                            <td>{this.state.calories.avg} calories</td>
+                            <td>{this.state.calories.avg}calories</td>
                         </tr>
                     </tbody>
                 </table>
                 <h4><i className="material-icons">navigation</i> Habits</h4>
                 {rows}
                 <div>
-                    <RaisedButton label="Daily update" primary={true}/>
+                    <RaisedButton label="Daily update" primary={true} />
                 </div>
             </div>
         );

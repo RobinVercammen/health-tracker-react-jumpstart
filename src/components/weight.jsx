@@ -1,6 +1,6 @@
 import React from 'react';
 import store from '../store';
-import {Table, TableBody, TableHeader, TableHeaderColumn, TableRow, TableRowColumn} from 'material-ui/Table';
+import { Table, TableBody, TableHeader, TableHeaderColumn, TableRow, TableRowColumn } from 'material-ui/Table';
 
 import FontIcon from 'material-ui/FontIcon';
 import { Link } from 'react-router';
@@ -9,20 +9,11 @@ import IconButton from 'material-ui/IconButton';
 import moment from 'moment';
 import FloatingActionButton from 'material-ui/FloatingActionButton';
 import ContentAdd from 'material-ui/svg-icons/content/add';
+import weightApi from '../api/weight';
 
 const formatDate = (date) => {
     return moment(date).format('dddd DD MMMM');
 }
-
-const weightUrl = 'http://localhost:10010/weight';
-const headers = new Headers({
-    'x-user-id': 1
-});
-
-const options = {
-    method: 'GET',
-    headers
-};
 
 const floatingbuttonstyle = { position: 'absolute', bottom: 25, right: 10 };
 
@@ -38,9 +29,7 @@ export default class Weight extends React.Component {
             this.setState({ tableData: content });
         });
 
-        fetch(weightUrl, options).then(reponse => {
-            return reponse.json();
-        }).then(json => {
+        weightApi.getAll().then(json => {
             store.dispatch({ type: 'LOADWEIGHT', content: json });
         });
     }
@@ -57,8 +46,8 @@ export default class Weight extends React.Component {
             const entry = this.state.tableData[index];
             rows.push(
                 <TableRow key={index}>
-                    <TableRowColumn style={row1}>{formatDate(entry.date) }</TableRowColumn>
-                    <TableRowColumn style={row2}>{entry.weight} Kg</TableRowColumn>
+                    <TableRowColumn style={row1}>{formatDate(entry.date)}</TableRowColumn>
+                    <TableRowColumn style={row2}>{entry.weight}Kg</TableRowColumn>
                     <TableRowColumn style={row3}>
                         <IconButton>
                             <Link to={`/weight/${entry.id}`}>
@@ -86,7 +75,7 @@ export default class Weight extends React.Component {
                 </Table>
                 <Link to={'/weight/new'}>
                     <FloatingActionButton style={floatingbuttonstyle}>
-                        <ContentAdd/>
+                        <ContentAdd />
                     </FloatingActionButton>
                 </Link>
             </div>

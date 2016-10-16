@@ -19,6 +19,9 @@ const applicationStore = (state, action) => {
         case 'EDITWEIGHT': {
             return Object.assign({}, state, { EditWeight: action.content });
         }
+        case 'SAVEHANDLER': {
+            return Object.assign({}, state, { save: action.action });
+        }
         default:
             return state;
     }

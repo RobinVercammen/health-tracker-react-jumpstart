@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "webpack-dev-server"
+    "start": "webpack-dev-server",
+    "build": "webpack --config webpack.release.config.js --progress -production --define process.env.NODE_ENV='\"production\"' --profile --colors"
   },
   "keywords": [],
   "author": "",

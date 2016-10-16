@@ -4,7 +4,7 @@ import injectTapEventPlugin from 'react-tap-event-plugin';
 import App from './app';
 import { Router, Route, IndexRedirect, Link, useRouterHistory } from 'react-router';
 import createHashHistory from 'history/lib/createHashHistory';
-const history = useRouterHistory(createHashHistory)({ queryKey: false })
+export const history = useRouterHistory(createHashHistory)({ queryKey: false });
 
 import Calories from './components/calories';
 import Dashboard from './components/dashboard';
